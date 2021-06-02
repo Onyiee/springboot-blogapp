@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 public class BlogAppApplication {
 	@Autowired
-	private CloudinaryConfig cloudinaryConfig;
+	CloudinaryConfig cloudinaryConfig;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BlogAppApplication.class, args);
@@ -22,7 +22,7 @@ public class BlogAppApplication {
 	public Cloudinary getCloudinary(){
 		Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
 				"cloud_name",cloudinaryConfig.getCloudName() ,
-				"api_key", cloudinaryConfig.getApiSecret(),
+				"api_key", cloudinaryConfig.getApiKey(),
 				"api_secret", cloudinaryConfig.getApiSecret()));
 		return cloudinary;
 
