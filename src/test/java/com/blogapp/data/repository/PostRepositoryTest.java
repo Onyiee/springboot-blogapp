@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Slf4j
@@ -188,4 +188,14 @@ class PostRepositoryTest {
         assertThat(commentedPost.getComments()).hasSize(2);
         log.info("commented post --> {}", commentedPost);
     }
+
+    @Test
+    void findAllPostInDescendingOrder(){
+        List<Post> allPosts = postRepository.findByOrderByDateCreatedDesc();
+        allPosts.forEach(post -> log.info("post date --> {}", post.getDateCreated()));
+        assertTrue(allPosts.get(0).getDateCreated().isAfter(allPosts.get(1).getDateCreated()));
+        assertThat(allPosts).isNotEmpty();
+    }
+
+
 }

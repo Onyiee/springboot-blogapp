@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -38,18 +39,15 @@ public class PostServiceImpl implements PostService{
         Post post = new Post();
 
         if (postDto.getImageFile() != null && !postDto.getImageFile().isEmpty()){
-            Map<Object, Object> params = new HashMap<>();
-            params.put("public_id","blogapp/" + postDto.getImageFile().getName());
-            params.put("overwrite", true);
-            log.info("Parameters --> {}", params);
 
            try {Map<?, ?> uploadResult =
                cloudStorageService.uploadImage(postDto.getImageFile(),
                    ObjectUtils.asMap(
-                           "public_id", "blogapp/" + postDto.getImageFile().getName(),
+                           "public_id", "blogapp/" +
+                                   extractFileName(Objects.requireNonNull(postDto.getImageFile().getOriginalFilename())),
                            "overwrite", true
                    ));
-               post.setCoverImageUrl(String.valueOf(uploadResult.get("url")));
+               post.setCoverImageUrl((String) uploadResult.get("url"));
            }catch (IOException e){
                e.printStackTrace();
            }
@@ -58,9 +56,7 @@ public class PostServiceImpl implements PostService{
         post.setContent(postDto.getContent());
 
         log.info("Post object before saving --> {}", post);
-//        ModelMapper modelMapper = new ModelMapper();
-//        modelMapper.map(postDto, post);
-//        log.info("Post object after mapping --> {}", post);
+
         try {
             return postRepository.save(post);
         }catch (DataIntegrityViolationException ex){
@@ -69,10 +65,16 @@ public class PostServiceImpl implements PostService{
         }
 
     }
-
+    private String extractFileName(String filename) {
+        return filename.split("\\.")[0];
+    }
     @Override
     public List<Post> findAllPosts() {
         return postRepository.findAll();
+    }
+    @Override
+    public List<Post> findAllPostsInDescendingOrder() {
+        return postRepository.findByOrderByDateCreatedDesc();
     }
 
     @Override

@@ -24,7 +24,7 @@ public class PostController {
 
     @GetMapping("")
     public String getIndex(Model model){
-        List<Post> postList = postServiceImpl.findAllPosts();
+        List<Post> postList = postServiceImpl.findAllPostsInDescendingOrder();
         model.addAttribute("postList", postList);
         return "index";
     }

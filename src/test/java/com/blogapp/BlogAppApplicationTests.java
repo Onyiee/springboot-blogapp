@@ -32,7 +32,7 @@ class BlogAppApplicationTests {
 			log.info("Connection --> {}", connection.getCatalog());
 		}catch (SQLException throwables){
 			log.info("Exception occurred while connecting to the database--> {}",
-					throwables.getMessage());
+					throwables.getLocalizedMessage());
 		}
 	}
 

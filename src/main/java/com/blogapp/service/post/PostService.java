@@ -10,6 +10,7 @@ import java.util.List;
 public interface PostService {
     Post savePost(PostDto postDto) throws PostObjectIsNullException;
     List<Post> findAllPosts();
+    List<Post> findAllPostsInDescendingOrder();
     Post updatePost(PostDto postDto);
     Post findById(Integer id);
     void deletePostById(Integer id);
