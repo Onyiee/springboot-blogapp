@@ -77,7 +77,7 @@ class CloudinaryCloudServiceStorageImplTest {
         postDto.setTitle("A post");
         postDto.setContent("Some content");
 
-        Path path = Paths.get("\"C:\\Users\\USER\\Desktop\\writing_images\\amador-loureiro-BVyNlchWqzs-unsplash.jpg\"");
+        Path path = Paths.get("C:\\Users\\USER\\Desktop\\writing_images\\amador-loureiro-BVyNlchWqzs-unsplash.jpg");
         MultipartFile multipartFile = new MockMultipartFile("images.jpeg","images.jpeg","img/jpeg",
                 Files.readAllBytes(path));
 
