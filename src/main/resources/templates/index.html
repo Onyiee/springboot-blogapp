@@ -45,18 +45,18 @@
 
     <!--    Blog post-->
     <div id="blog" class="blog-post-container">
-        <div class="blog-post" th:each="post : ${postList}">
+        <div class="blog-post" th:each="postObj : ${postList}">
             <a href="./asset/pages/post.html" class="img-container">
-                <img th:src="${post.coverImageUrl}" alt="blog-img">
+                <img th:src="${postObj.coverImageUrl}" alt="blog-img">
             </a>
-            <a href="./asset/pages/post.html" class="post-title" th:text="${post.title}"></a>
+            <a href="./asset/pages/post.html" class="post-title" th:text="${postObj.title}"></a>
             <div class="blog-post-detail">
                 <a class="user-detail">
                     <img src="asset/images/author-image1.jpg" class="user-profile">
                     <a href="" class="user-name">Jen Lopez</a>
                 </a>
 
-                <p class="date-published" th:text="${post.dateCreated}"></p>
+                <p class="date-published" th:text="${postObj.dateCreated}"></p>
 
                 <a href="" class="actions">
                     <p><i class="far fa-comment"></i></p>
@@ -64,7 +64,7 @@
                 </a>
             </div>
             <div class="post-content">
-                <p th:text="${post.content}"></p>
+                <p th:text="${postObj.content}"></p>
             </div>
             <a href="/asset/pages/post.html">
                 <button class="view-post">

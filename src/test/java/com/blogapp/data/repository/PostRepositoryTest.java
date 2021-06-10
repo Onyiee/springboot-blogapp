@@ -91,6 +91,7 @@ class PostRepositoryTest {
         Post savedPost = postRepository.findByTitle("What is Fintech?");
         assertThat(savedPost).isNotNull();
         assertThat(savedPost.getTitle()).isEqualTo("What is Fintech?");
+        assertThat(savedPost.getAuthor()).isNotNull();
 
     }
 

@@ -47,7 +47,8 @@ public class PostServiceImpl implements PostService{
                                    extractFileName(Objects.requireNonNull(postDto.getImageFile().getOriginalFilename())),
                            "overwrite", true
                    ));
-               post.setCoverImageUrl((String) uploadResult.get("url"));
+               String imageUrl = (String) uploadResult.get("url");
+               post.setCoverImageUrl(imageUrl);
            }catch (IOException e){
                e.printStackTrace();
            }

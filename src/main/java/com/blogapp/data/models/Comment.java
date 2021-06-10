@@ -17,7 +17,6 @@ import java.util.UUID;
 public class Comment {
     @Id
     @GeneratedValue
-
     private UUID id;
 
     private String commentatorName;

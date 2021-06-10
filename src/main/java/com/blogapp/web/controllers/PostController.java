@@ -47,7 +47,6 @@ public class PostController {
             log.info("Constraint exception occurred-->{}", dx.getMessage());
             model.addAttribute("error", true);
             model.addAttribute("errorMessage", dx.getMessage());
-//            model.addAttribute("postDto", new PostDto());
             return "create";
         }
         return "redirect:/posts";
